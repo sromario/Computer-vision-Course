@@ -13,6 +13,7 @@ video = cv2.VideoCapture("projetos/estacionamento/videoEstacionamento.mp4")
 #usar kenel e dil para melhorar identificação
 while True:
     check, img = video.read()
+    img = cv2.resize(img,(800,500))
     imgCinza = cv2.cvtColor(img, cv2.COLOR_RGBA2GRAY)
     imgTh = cv2.adaptiveThreshold(imgCinza, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,25,16)
 
@@ -28,9 +29,9 @@ while True:
         vaga = imgDil[y:y+h,x:x+w]
         cont = cv2.countNonZero(vaga)
         cv2.putText(img,str(cont),(x,y-10),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX, 0.5, (255,255,255),1)
-        if cont <900:
+        if cont <400:
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,255,0),2) #colocar o retangulo verde
-            vagasAbertas +=1
+            vagasAbertas = vagasAbertas+1
         else:
             cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2) #colocar o retangulo vermelho
         cv2.rectangle(img,(90,0),(415,60),(0,255,255),-1)

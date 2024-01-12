@@ -3,11 +3,11 @@ import pickle
 
 #chamar o arquivo pgn para tirar as medidas
 img = cv2.imread("projetos/estacionamento/estacionamento.png") 
-
+img = cv2.resize(img,(800,500))
 #criar lista vazia para armazenar cordenadas
 #percorrer 69 vezes, porque tem 69 vagas
 vagas = []
-for i in range(69):
+for i in range(70):
     vaga = cv2.selectROI("vagas",img,False) #selecionar o espaço
     cv2.destroyWindow("vagas")
     vagas.append((vaga))
