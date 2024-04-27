@@ -3,11 +3,11 @@ import pickle
 import numpy as np
 
 #chamar arquivo criado com capturar
-with open ("projetos/estacionamento/vagas.pkl", "rb") as arquivo:
+with open ("projects/Parking//vagas.pkl", "rb") as arquivo:
     vagas = pickle.load(arquivo)
 
 #chamar video
-video = cv2.VideoCapture("projetos/estacionamento/videoEstacionamento.mp4")
+video = cv2.VideoCapture("projects/Parking/videoEstacionamento.mp4")
 
 #iniciar video e converte ele para: cinza,binary,medianblur. para melhor identificação do espaço
 #usar kenel e dil para melhorar identificação

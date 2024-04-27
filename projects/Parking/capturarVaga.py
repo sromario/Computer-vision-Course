@@ -2,7 +2,7 @@ import cv2
 import pickle
 
 #chamar o arquivo pgn para tirar as medidas
-img = cv2.imread("projetos/estacionamento/estacionamento.png") 
+img = cv2.imread("projects/Parking/estacionamento.png") 
 img = cv2.resize(img,(800,500))
 #criar lista vazia para armazenar cordenadas
 #percorrer 69 vezes, porque tem 69 vagas
