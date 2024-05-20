@@ -19,7 +19,7 @@ while True:
     handspoints = results.multi_hand_landmarks
     
     h,w,_ =img.shape # dimensões da imagem (altura x largura)
-
+    pontos = []
     # Verifica se foram encontradas mãos e desenha os pontos e conexões das mãos detectadas
     if handspoints:
         for points in handspoints:
@@ -30,8 +30,25 @@ while True:
             for id, corte in enumerate(points.landmark): 
                    cx,cy =int(corte.x*w), int(corte.y*h) # extraindo cordenadas
                    cv2.putText(img,str(id),(cx,cy+10),cv2.FONT_HERSHEY_SIMPLEX,0.5,(255,0,0),2) #exibir cordenadas na tela com os pontos
+                   pontos.append((cx,cy))
+                   
 
-   
+        # pontos das pontas dos dedos
+        dedos =[8,12,16,20]
+        contador = 0
+
+        # ver se a cordenada x está nos dedos e se está baixo ou não
+        if points:
+            if pontos[4][0] < pontos[2][0]:
+                contador += 1
+            for x in dedos:
+             if pontos[x][1] < pontos[x-2][1]:
+                 contador += 1
+    
+    
+        print(contador)
+
+        cv2.putText(img,str(contador),(100,100),cv2.FONT_HERSHEY_SCRIPT_SIMPLEX,4,(0,255,0),5)    
     cv2.imshow('imagem', img)  #exibir e encerrar programa
     cv2.waitKey(1)
     
